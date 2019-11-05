@@ -117,6 +117,7 @@ def pick_family_name():
     one_name = random.choice(family_names)
     return one_name
 
+
 def pick_given_name():
     ''' 从既定名字中挑选一个名 '''
     # 随机生成名的字数 1=单名， 2=复名
@@ -139,6 +140,7 @@ def pick_given_name():
             picked_name = random.choice(girls_given_words2)
 
     return picked_name
+
 
 def pick_given_name_by_sex(is_boy):
     ''' 按指定的性别，从既定名字中挑选一个名 '''
@@ -167,13 +169,13 @@ def pick_given_name_by_sex(is_boy):
 def pick_a_full_name():
 
     sf = pick_family_name()
-    if len(sf)<=1:
+    if len(sf) <= 1:
         sf = sf + '   '
     else:
         sf = sf + ' '
 
     sg = pick_given_name()
-    if len(sg)<=1:
+    if len(sg) <= 1:
         sg = sg + '   '
     else:
         sg = sg + ' '
@@ -184,13 +186,13 @@ def pick_a_full_name():
 def pick_a_full_name_by_sex(is_boy):
 
     sf = pick_family_name()
-    if len(sf)<=1:
+    if len(sf) <= 1:
         sf = sf + '   '
     else:
         sf = sf + ' '
 
     sg = pick_given_name_by_sex(is_boy)
-    if len(sg)<=1:
+    if len(sg) <= 1:
         sg = sg + '   '
     else:
         sg = sg + ' '

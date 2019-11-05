@@ -73,7 +73,7 @@ def record_deck(deck_to_be_record, filename):
     for card in deck_to_be_record:
         f.write(card)
         f.write('\n')
-    f.close
+    f.close()
 
     return
 
@@ -104,5 +104,6 @@ def make_deck_by_type(play_type, out_deck):
         # shuffled & record
         shuffled_deck(out_deck)
         record_deck(out_deck,'四人斗地主-刚洗好的牌.txt')
+
 
     return

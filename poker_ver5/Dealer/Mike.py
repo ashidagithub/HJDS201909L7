@@ -5,44 +5,60 @@
 # created:  2019.7.10
 
 # Description:
-# 发牌员 Mike, 他可以
-#   1) 从某副牌中给某人发指定数量的牌
-#   2) 按指定人数平均发牌，多余的牌放在一边
+#   定义发牌员的动作函数
 # ------------------------(max to 80 columns)-----------------------------------
+
 import random
 
 
-def deal_to_a_player(deck, deal_num, player_deck):
+def deal_to_a_player(aDeck, num, player_cards):
     'Desc: Deal some cards to a player from a deck'
 
-    for i in range(deal_num):
-        picked_card = random.choice(deck)
-        player_deck.append(picked_card)
-        deck.remove(picked_card)
-    # print('\# NOTE: ==debug1: %s' % (player_deck))
-    player_deck.sort()
-    #print('==debug2: %s' % (player_deck))
+    for i in range(num):
+        picked_card = random.choice(aDeck)
+        player_cards.append(picked_card)
+        aDeck.remove(picked_card)
+    # print('\# NOTE: ==debug1: %s' % (player_cards))
+    player_cards.sort()
+
     return
 
 
-def deal_to_multi_players(deck, *players_decks):
+def deal_to_multi_players(aDeck, *players_cards):
     'Desc: Deal to multiple players, deal remained cards into first player'
 
-    player_num = len(players_decks) # 确定玩家人数
-    total_cards = len(deck)         # 获取牌的张数
-    deal_num = int(total_cards / player_num)    # 计算发给每个玩家的牌数量
-    #print('\n===debug1: %d' % (deal_num))
+    player_num = len(players_cards)
+    cards_num = len(aDeck)
+    player_hold_cards = int(cards_num / player_num)
+    #print('\n===debug1: %d' % (player_hold_cards))
 
-    for pd in players_decks:
-        # 为每个玩家发牌
-        deal_to_a_player(deck, deal_num, pd)
+    for pscs in players_cards:
+        deal_to_a_player(aDeck, player_hold_cards, pscs)
 
-    # 如果还有剩余的牌，默认发到第一个玩家
-    if len(deck) > 0:
-        for card in deck:
-            players_decks[0].append(card)
-        deck = []
-        # 对第一个玩家手中的牌重新进行排序
-        players_decks[0].sort()
+    if len(aDeck) > 0:
+        for card in aDeck:
+            players_cards[0].append(card)
+        aDeck = []
+        players_cards[0].sort()
+
+    return
+
+
+def deal_to_multi_players_remain(aDeck, remain_num, player_dumy, *players_cards):
+    'Desc: Deal to multiple players, deal remained cards into dumy'
+
+    player_num = len(players_cards)
+    cards_num = len(aDeck) - remain_num
+    player_hold_cards = int(cards_num / player_num)
+    #print('\n===debug1: %d' % (player_hold_cards))
+
+    for pscs in players_cards:
+        deal_to_a_player(aDeck, player_hold_cards, pscs)
+
+    if len(aDeck) > 0:
+        for card in aDeck:
+            player_dumy.append(card)
+        aDeck = []
+        player_dumy.sort()
 
     return

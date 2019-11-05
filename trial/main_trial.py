@@ -9,15 +9,16 @@
 # ------------------------(max to 80 columns)-----------------------------------
 
 
-from pkg_naming.naming_machine import *
-#from pkg_naming.naming_machine import pick_a_full_name
+#import pkg_naming.naming_machine as nm
+from pkg_naming.naming_machine import pick_a_full_name, pick_a_full_name_by_sex
 
+print('---Generate some full names---')
+for idx in range(10):
+    new_name = pick_a_full_name()
+    print(new_name)
 
-# Generate a new full name
-new_name = pick_a_full_name()
-print(new_name)
-
-# Generate a new boy's name
-sex = 1
-new_boy_name = pick_a_full_name_by_sex(sex)
-print(new_boy_name)
+print('---Generate some girl''s names---')
+sex = 2
+for idx in range(30):
+    new_name = pick_a_full_name_by_sex(sex)
+    print(new_name)
